@@ -1,0 +1,88 @@
+name,store_name,street,city,province,postal_code,country,source
+Safeway,Safeway Crestview,3393 Portage Avenue,Winnipeg,Manitoba,R3K2G7,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Charleswood Centre,3900 Grant Avenue,Winnipeg,Manitoba,R3R3C2,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Tuxedo,2025 Corydon Avenue,Winnipeg,Manitoba,R3P0N5,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Tyndall Square,850 Keewatin Street,Winnipeg,Manitoba,R2R0Z5,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Madison Square,1612 Ness Avenue,Winnipeg,Manitoba,R3J0H7,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Lindenridge,1625 Kenaston Boulevard,Winnipeg,Manitoba,R3P2M4,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Mountain and McGregor,594 Mountain Avenue,Winnipeg,Manitoba,R2W1L2,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway River Avenue,499 River Avenue,Winnipeg,Manitoba,R3L0C9,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Pembina Village,2155 Pembina Highway,Winnipeg,Manitoba,R3T5S9,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Osborne and Kylemore,655 Osborne Avenue,Winnipeg,Manitoba,R3L2B7,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Marion and Braemar,285 Marion Street,Winnipeg,Manitoba,R2H0T8,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway River East Plaza,1441 Henderson Highway,Winnipeg,Manitoba,R2G1N4,Canada,https://www.safeway.ca/store-locator
+Safeway,Safeway Transcona,654 Kildare Avenue East,Winnipeg,Manitoba,R2C0P8,Canada,https://www.safeway.ca/store-locator
+Sobeys,Sobeys Kildonan,50 Kildonan Green Drive Northwest,Winnipeg,Manitoba,R3W0H1,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Reenders,7 Reenders Drive,Winnipeg,Manitoba,R2C5K5,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Rivergrove,2575 Main Street,Winnipeg,Manitoba,R2V4W3,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Sage Creek,50 Sage Creek Boulevard,Winnipeg,Manitoba,R3X0J6,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Northdale,965 Henderson Highway,Winnipeg,Manitoba,R2K2M3,Canada,https://www.sobeys.com/store-locator
+Sobeys,St. Annes Sobeys,1939 Abinojii Mikanah,Winnipeg,Manitoba,R2M5S1,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys St. Vital,1500 Dakota Street,Winnipeg,Manitoba,R2N3Y7,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Grant Park,1150 Taylor Avenue,Winnipeg,Manitoba,R3M3Z4,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Pembina,2850 Pembina Highway,Winnipeg,Manitoba,R3T6E4,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Kenaston,1660 Kenaston Boulevard,Winnipeg,Manitoba,R3P2M6,Canada,https://www.sobeys.com/store-locator
+Sobeys,Sobeys Unicity,3635 Portage Avenue,Winnipeg,Manitoba,R3K2G6,Canada,https://www.sobeys.com/store-locator
+IGA,IGA Windsor Park,650 Elizabeth Road,Winnipeg,Manitoba,R2J 1A4,Canada,https://west.iga.ca/store-locator/
+IGA,IGA Main St,1650 Main Street,Winnipeg,Manitoba,R2V 1Y9,Canada,https://west.iga.ca/store-locator/
+Red-River Co-op,Grant Park,1120 Grant Avenue,Winnipeg,Manitoba,,Canada,https://www.redriverco-op.crs/sites/redriver/local/detail/food-stores
+Red-River Co-op,Seasons,755 Sterling Lyon Parkway,Winnipeg,Manitoba,,Canada,https://www.redriverco-op.crs/sites/redriver/local/detail/food-stores
+Red-River Co-op,Southdale,77 Vermillion Road,Winnipeg,Manitoba,,Canada,https://www.redriverco-op.crs/sites/redriver/local/detail/food-stores
+Red-River Co-op,St Norbert,3477 Pembina Highway,Winnipeg,Manitoba,,Canada,https://www.redriverco-op.crs/sites/redriver/local/detail/food-stores
+Red-River Co-op,St Vital,850 Dakota Street,Winnipeg,Manitoba,,Canada,https://www.redriverco-op.crs/sites/redriver/local/detail/food-stores
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE SARGENT AVENUE,1385 Sargent Avenue,Winnipeg,Manitoba,R3E 3P8,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE ST ANNE'S ROAD,215 St Anne's Road,Winnipeg,Manitoba,R2M 2Z9,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE REGENT AVENUE,1578 Regent Avenue West,Winnipeg,Manitoba,R2C 3B4,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE GATEWAY ROAD,1035 Gateway Road,Winnipeg,Manitoba,R2K 4C1,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE MCPHILLIPS STREET,2132 Mcphillips Street,Winnipeg,Manitoba,R2V 3C8,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE KENASTON BLVD,550 Kenaston Boulevard,Winnipeg,Manitoba,R3N 2A1,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE BISON DRIVE,80 Bison Drive,Winnipeg,Manitoba,R3T 4Z7,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+Real Canadian Superstore,REAL CANADIAN SUPERSTORE PORTAGE AVENUE,3193 Portage Avenue,Winnipeg,Manitoba,R3K 0W4,Canada,"https://www.realcanadiansuperstore.ca/en/store-locator?searchQuery=Winnipeg,%20MB,%20Canada&type=store"
+FreshCo,FreshCo Jefferson & McPhillips,920 Jefferson Avenue,Winnipeg,Manitoba,R2P1W1,Canada,https://www.freshco.com/store-locator
+FreshCo,FreshCo Sargent,600 Sargent Avenue,Winnipeg,Manitoba,R3E0A1,Canada,https://www.freshco.com/store-locator
+FreshCo,Freshco Henderson,731 Henderson Highway,Winnipeg,Manitoba,R2K2K4,Canada,https://www.freshco.com/store-locator
+FreshCo,FreshCo Regent & Lagimodiere,1615 Regent Avenue West,Winnipeg,Manitoba,R2C5C6,Canada,https://www.freshco.com/store-locator
+FreshCo,FreshCo Pembina & McGillivray,1319 Pembina Highway,Winnipeg,Manitoba,R3T2B6,Canada,https://www.freshco.com/store-locator
+FreshCo,FreshCo Niakwa Village,2 Alpine Avenue,Winnipeg,Manitoba,R2M0Y5,Canada,https://www.freshco.com/store-locator
+No Frills,CHRIS' NOFRILLS WINNIPEG,600 Notre Dame Avenue,Winnipeg,Manitoba,R3B 1S4,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,ANDY & NICK'S NOFRILLS WINNIPEG,161 Goulet Street,Winnipeg,Manitoba,R2H 0R6,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,HELLARD'S NOFRILLS WINNIPEG,1445 Main Street,Winnipeg,Manitoba,R2W 3V8,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,LUIS & EMMA'S NOFRILLS WINNIPEG STAFFORD,677 Stafford Street,Winnipeg,Manitoba,R3M 2X7,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,TREVOR & HAYLEY'S NOFRILLS WINNIPEG,1795 Henderson Highway,Winnipeg,Manitoba,R2G 1P3,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,MIKE'S NOFRILLS WINNIPEG PLESSIS,1500 Plessis Road,Winnipeg,Manitoba,R2C 5R5,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,JERAMIE'S NOFRILLS WINNIPEG,740 St. Anne's Road,Winnipeg,Manitoba,R2N 0A2,Canada,https://www.nofrills.ca/en/store-locator
+No Frills,TOM'S NOFRILLS WINNIPEG,6650 Roblin Boulevard,Winnipeg,Manitoba,R3R 2P9,Canada,https://www.nofrills.ca/en/store-locator
+Save-on-foods,St James,850 ST James Street,Winnipeg,Manitoba,R3G 3L7,Canada,https://www.saveonfoods.com/sm/planning/rsid/1982/store
+Save-on-foods,Northgate,1399 McPhillips Street Northgate Mall,Winnipeg,Manitoba,R2V 3C4,Canada,https://www.saveonfoods.com/sm/planning/rsid/1982/store
+Save-on-foods,Kildonan,1555 Regent Avenue West,Winnipeg,Manitoba,R2C 4J2,Canada,https://www.saveonfoods.com/sm/planning/rsid/1982/store
+Save-on-foods,Pembina,1910 Pembina Highway,Winnipeg,Manitoba,R3T 4S5,Canada,https://www.saveonfoods.com/sm/planning/rsid/1982/store
+Save-on-foods,Bridgwater,400 Town Road North,Winnipeg,Manitoba,R3Y 0Y3,Canada,https://www.saveonfoods.com/sm/planning/rsid/1982/store
+Wal-mart,"C. Winnipeg, Manitoba",1001 Empress Street,Winnipeg,Manitoba,R3G 3P8,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N1
+Wal-mart,Winnipeg (grant Park),1000 Taylor Avenue,Winnipeg,Manitoba,R3M 1T6,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N0
+Wal-mart,"E. Winnipeg, Manitoba",1576 Regent Ave West,Winnipeg,Manitoba,R2C 3B4,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N1
+Wal-mart,Winnipeg (se),35 Lakewood Boulevard,Winnipeg,Manitoba,R2J 2M8,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N2
+Wal-mart,"N. Winnipeg, Garden City",2370 McPhillips Street,Winnipeg,Manitoba,R2V 4J6,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N3
+Wal-mart,"S. Winnipeg, St.vital Ctr",1225 St Mary's Road,Winnipeg,Manitoba,R2M 5E6,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N4
+Wal-mart,Sw Winnipeg Manitoba,1665 Kenaston Boulevard,Winnipeg,Manitoba,R3P 2M4,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N5
+Wal-mart,"W. Winnipeg, Manitoba",3655 Portage Avenue,Winnipeg,Manitoba,R3K 2G6,Canada,https://www.walmart.ca/en/store-finder?location=L5V%202N6
+Giant Tiger,Giant Tiger,345 Donald Street,Winnipeg,Manitoba,R3B 2J1,Canada,giant tiger website
+Giant Tiger,Giant Tiger,1450 Ellice Avenue,Winnipeg,Manitoba,R3G 0G4,Canada,giant tiger website
+Giant Tiger,Giant Tiger,507 London Street,Winnipeg,Manitoba,R2K 2Z4,Canada,giant tiger website
+Giant Tiger,Giant Tiger,940 Jefferson Avenue,Winnipeg,Manitoba,R2P 1W1,Canada,giant tiger website
+Giant Tiger,Giant Tiger,225 Vermillion Road,Winnipeg,Manitoba,R2J 3Z7,Canada,giant tiger website
+Giant Tiger,Giant Tiger,838 Regent Avenue West,Winnipeg,Manitoba,R2C 3A8,Canada,giant tiger website
+Giant Tiger,Giant Tiger,2195 Pembina Highway,Winnipeg,Manitoba,R3T 5S9,Canada,giant tiger website
+Giant Tiger,Giant Tiger,3332 Portage Avenue,Winnipeg,Manitoba,R3K 0Z1,Canada,giant tiger website
+Food fare,Food fare,839 Cavalier Drive,Winnipeg,Manitoba,,Canada,https://foodfare.com/# 
+Food fare,Food fare,247 Lilac Street,Winnipeg,Manitoba,,Canada,https://foodfare.com/# 
+Food fare,Food fare,115 Maryland Street,Winnipeg,Manitoba,,Canada,https://foodfare.com/# 
+Food fare,Food fare,905 Portage Avenue,Winnipeg,Manitoba,,Canada,https://foodfare.com/# 
+Food fare,Food fare,2285 Portage Avenue,Winnipeg,Manitoba,,Canada,https://foodfare.com/# 
+Family Foods,Downtown Family Foods,120 Donald Street,Winnipeg,Manitoba,R3C 4G2,Canada,https://familyfoods.ca/store-locator/manitoba/
+Family Foods,Portage Avenue Family Foods,1881 Portage Avenue,Winnipeg,Manitoba,R3J 0H3,Canada,https://familyfoods.ca/store-locator/manitoba/
+Lucky Supermarket,Lucky Supermarket,1303 Jefferson Avenue,Winnipeg,Manitoba,,Canada,google maps
+Lucky Supermarket,Lucky Supermarket,1051 Winnipeg Avenue,Winnipeg,Manitoba,,Canada,google maps
+Young's Trading,Young's Trading,397 William Avenue,Winnipeg,Manitoba,,Canada,google maps
+Young's Market,Young's Market,1000 McPhillips Street,Winnipeg,Manitoba,,Canada,google maps
+MADINA SUPERMARKET AND HALAL MEAT,MADINA SUPERMARKET AND HALAL MEAT,166 Meadowood Drive,Winnipeg,Manitoba,R2M 2S6,Canada,google maps
+Dino's Grocery Mart,Dino's Grocery Mart,84 Isabel Street,Winnipeg,Manitoba,R3A 1E9,Canada,google maps

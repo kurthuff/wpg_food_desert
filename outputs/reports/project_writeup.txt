@@ -1,0 +1,80 @@
+It seems to me that one of the best skills a data professional can have to is to be curious and a quick learner.
+Being curious makes you apt to think deeply about every domain you're tasked with learning about. If you don't find 
+"the pleasure in finding things out" as Feynman says, it will be hard to get into the statistical and analytical weeds
+with the domain. Thinking deeply about the material, stakeholders, and outcomes of your work can help raise ethical
+alarm bells and keep you motivated while you sift through minutiae of the problem you've been asked to investigate or solve.
+
+So...First, I had to do some reading.
+The main article I used for this project is "Food deserts in Winnipeg, Canada: a novel method for measuring a complex
+and contested construct" (Slater et. al, 2017). Here, the author's define a sufficient food retail space as having
+"sufficient variety at affordable cost" (p. 350), while a "failure to include local full-serivce grovery stores when identifying
+food deserts may lead to an overestimation of their size." (p. 350).
+
+In the article, (Slater et. al, 2017)  outline to scenarios for food deserts, the first being where a resident lives >500m from
+a national chain grocery store, and the second being where a resident lives >500m from a national chain grocery store or a
+full-service grocery store.
+
+National chains are easy to identify, but what is a full-service grocery store? Well, they aren't convenience stores, which
+(Slater et al, 2017) says have limited selection at higher prices. Full-service grocery stores are "fair-priced".
+
+Where my methodology then diverges from this paper is in how the data is collected. (Slater et. al, 2017) took their
+grocery stores from yellow pages and then used dieticians to verify the quality of food (fruits and vegetables beyond potatoes
+and other basics, not prepacked, meat and dairy close to national chain prices). I will be using volunteered data from 
+OpenStreetMaps which I will then verify using reviews, photos of the interior of the store and other means.
+
+First Issue
+
+As (Slater et. al, 2017) notes, it's tough to universally define what a proper grocery store is, and what meets the threshold
+of affordability and proper variety. Using the tag of 'supermarket' when querying OSM, some stores are *arguably*  incorrectly omitted.
+For example, 'Indian Brothers Grocey & street food' has many veggies, fruits, and dairy, but not much meat. Also, the foods
+are centred around Indian cuisine; does that disqualify them? For people that exclusively cook Indian food and are vegetarian,
+the answer should be no. But for someone who doesn't, the answer is yes. Perhaps the only grocery stores that should qualify
+contain enough variety so that everyone can reasonably find, or cook using recipes, things they'll want to eat. In this case,
+the only answer should be large grocery stores with common and culturally specific spices, meats, and vegetables. Does Young's
+qualify? 
+
+I used the term 'common' to refer to meats, spices, and vegatables that are ubiqituous. But ibiqituous for whom? As you can see,
+this get's tricky, and this is why it's important for a data professional to be curious, inquisitive, and willing to 'get into
+the weeds' on concepts, like any domain-specific scientist or analyst would.
+
+Here's another, just because I'm on a roll with this: do vegetarian stores count? Meat is no longer needed to be included in the
+definition. How do you value a vegetarian-centric variety of foods compared to an cultural-centric variety of foods. Does tripe
+have a greater value than jackfruit or lemongrass shoots?
+
+When I was travelling in South America, I lived in a small town called Ayampe, population 400, on the Ecuadorian coast. I had to
+take a bus across an enormous headland, with it's own cloud forest microclimate to get to a grocery store with fresh veggies and
+meat. But even still, when I entered the grocery store in Montanita for the first time, the selection of fruits, veggies, and dairy
+made it feel like I was in a food desert, or more aptly named, a food mirage; There was food there, but I couldn't even read the
+labels or make sense out of how to build meals from the ingredients I saw. Is that what it's like when an immigrant to Canada
+walks into Safeway for the first time?
+
+How does that thought experiment relate? Because, as a lifelong consumer of O'Henry bars, Kraft dinner, and Hamburger Helper,
+I'm prone to bias what I think is a proper selection of groceries, as being a part of my White, Ukrainian heritage diet. But
+cultural food deserts exist for someone who is looking for paneer and fresh fenugreek in an aisle of Cheemo perogies.
+
+Is this too deep into the weeds? I argue that it's not. I need my methodology to be defensible to politicians, a general
+audience, urban planners, independent grocery store owners, and finally to all citizens.
+
+I can now see one reason why (Slater et. al, 2017) conferred with dieticians on their choice of qualifying grocery stores.
+It's another experts opinion. It's methodology back up. And finally, it helps ease what can be a complex, overwhelming decision
+in a project's methodology.
+
+So, what can I do? Using the same choices as Slater, I will split up supermarkets like No Frills and Wal-Mart from smaller, niche
+grocers. However, I don't have dieticians to confirm selection at these shops, so I will exclude them. A few 'outliers' that I will
+include in the 'supermarket' category is Dino's, Young's and Lucky and Giant Tiger.
+
+
+Workflow in general:
+
+1) Obtain addresses of all grocers included in the analysis, and create a script that gets a geometry node from their address field(s).
+
+2) Using parcel assessments data, put each parcel into the correct neighbourhood.
+
+3) Using previously acquired population of Winnipeg neighbourhood data from 2021 census, devise a one to proportionally place a citizen
+into a residential parcel. Decide on methodology for that.
+
+4) Create a centroid for each residential parcel node.
+
+5) Find the distance from each residential node to the nearest grocer node.
+    a) As the crow flies, straight-line distance
+    b) Learn how to use the road map of the city to calculate the travelling distance.
