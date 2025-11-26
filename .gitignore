@@ -28,3 +28,6 @@ data/reference/project.writeup.txt
 *.egg-info/
 build/
 dist/
+
+# Cache
+cache/
