@@ -49,8 +49,10 @@ https://data.winnipeg.ca/City-Planning/Map-of-Road-Network/2eba-wm4h
 Used to locate supermarkets in Winnipeg, this queries the Overpass API, and by running pull_osm_supermarkets.py, saves
 data/reference/winnipeg_supermarkets.geojson. This list of supermarkets is explored and cleaned in osm_eda.ipynb.
 
-4) Company Websites<br>
-Used to build a reliable address inventory of supermarkets and large independent grocery stores.
+4) Company Websites with geocode<br>
+Used to build a reliable address inventory of supermarkets and large independent grocery stores. Using QGIS and the
+MMQGIS plugin, I chose 'Geocode CSV with Web Service', specifying the fields needed. Used OpenStreetMaps/Nomanatim
+as Web Service. This creates lat and lon fields using addresses.
 
 5) 2021 Census Information for Winnipeg Neighbourhoods<br>
 The page linked below gives an alphabetical listing of Winnipeg's 2021 census data for neighbourhoods. I used this
@@ -81,5 +83,3 @@ Each neighbourhood has its Total Living Area calculated, and each parcel gets a 
 sum. The weight calculated against the population of the neighbourhood to calculate residents in the parcel. Those with <1
 get 1. Then the remaining pop gets recalculated. This is iterative and is a bottom-up approach. It's more realistic to have
 the residents per parcel level off as parcel sqft grows. Also outputs a mask, not the entire dataset.
-
-
