@@ -74,4 +74,12 @@ and as well takes in /data/reference/neighbourhoods.csv. First, valid residentia
 aggregate of all parcels, then the centroid lat and lon of each is computed to be inside one of the neighbourhoods
 in the neighbourhoods.csv using its geometry column, being a multipolygon. population_id, geometry, name and population
 fields are joined to the parcels dataframe, and then a mask is written out to data/interim/. The mask is a much smaller
-file that can be re-read to the next script, instead of writing out another huge parcels dataset,
+file that can be re-read to the next script, instead of writing out another huge parcels dataset.
+
+3) compute_residents.py
+Each neighbourhood has its Total Living Area calculated, and each parcel gets a sqft weight of the total sqft neighbourhood
+sum. The weight calculated against the population of the neighbourhood to calculate residents in the parcel. Those with <1
+get 1. Then the remaining pop gets recalculated. This is iterative and is a bottom-up approach. It's more realistic to have
+the residents per parcel level off as parcel sqft grows. Also outputs a mask, not the entire dataset.
+
+
