@@ -83,3 +83,7 @@ Each neighbourhood has its Total Living Area calculated, and each parcel gets a 
 sum. The weight calculated against the population of the neighbourhood to calculate residents in the parcel. Those with <1
 get 1. Then the remaining pop gets recalculated. This is iterative and is a bottom-up approach. It's more realistic to have
 the residents per parcel level off as parcel sqft grows. Also outputs a mask, not the entire dataset.
+
+4) make_grocer_points.py<br>
+Using the output from QGIS and the plugin MMQGIS to add geocode to grocer_addresses.csv, this script adds geometry point
+data of the grocers in my grocer_addresses.csv (manually curated).
