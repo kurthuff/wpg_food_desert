@@ -67,7 +67,8 @@ https://legacy.winnipeg.ca/census/2021/Alpha/default.asp
 In run order:
 
 1) __pull_osm_supermarkets.py__<br>
-**NO LONGER USED** OpenStreetMaps no longer used in favour of manual data collection.
+_NO LONGER USED_<br>
+OpenStreetMaps no longer used in favour of manual data collection.
 This queries the Overpass API, saving data/reference/winnipeg_supermarkets.geojson for further exploring and cleaning
 before being used for the project.
 
