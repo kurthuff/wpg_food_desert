@@ -78,3 +78,114 @@ into a residential parcel. Decide on methodology for that.
 5) Find the distance from each residential node to the nearest grocer node.
     a) As the crow flies, straight-line distance
     b) Learn how to use the road map of the city to calculate the travelling distance.
+
+Parcel Assessment EDA
+
+I'm using thia dataset, along with my own compiled neighbourhood population data from the 2021 census, to accurately distribute
+population amongst residential parcels. First I needed understand potential ways to map population to parcels, and even more,
+fundamentally, isolate instances in the Parcel Assessment dataset that contains actual dwelling units. I'll use an example.
+
+I used to live at 77 Edmonton St. It's a mix of condos and apartments. When I searched for this address in the dataset, I was met
+with individual units, like 614-77 Edmonton St. (it had a great view of the legislature, btw). But the data set also contained an
+instance of the entire apartment of 77 Edmonton St. as it's own parcel. So, it's like there is parcels within a parcel. However,
+the 77 Edmonton entry, roll number '12092840000', has no assessed value, no total living area, and basically no other non-NaN values
+then the address. So what we're looking for are parcels that have 'Total Living Area' > 0. Parcels other than residential parcels
+may have 'Total Assessed Value' > 0.
+
+Can I just mention that the dataset is an annoying, with 'Total Assessed Value' being an object
+with mixed characters ($11,000). Why, oh why, aren't inputted data done so as integers? The metadata can simply say the units of the
+particular column, and save everyone a headache, since of course, if you use the City of Winnipeg Data Portal, and query by ascending
+assessment value, it can't actually sort from highest to lowest. Come on, Winnipeg.
+
+Anyways, in my EDA notebook, after converting Total Living Area to an Int64 (it was also an object type), here is what I found:
+
+'Property Use Code' values for any instance of 'Total Living Area' > 0
+
+['RESSD - DETACHED SINGLE DWELLING', 'RESSS - SIDE BY SIDE',
+       'CNRES - CONDO RESIDENTIAL', 'RESMA - MULTIPLE ATTACHED UNITS',
+       'RESSU - RESIDENTIAL SECONDARY UNIT', 'CNAPT - CONDO APARTMENT',
+       'RESMC - MULTIFAMILY CONVERSION', 'RESRH - ROW HOUSING',
+       'RESTR - TRIPLEX', 'RESDU - DUPLEX']
+
+This is good, this means that 'Total Living Area' > 0 is exclusive to residental codes, which makes sense but needs to be validated anyways.
+
+A quick Parcel Assessment dataset fact: 'Property Influences' is an interesting category that lists, comma-separated, these factors. The dataset
+contains a lot of NaN in this category because it only lists the factors for the building itself (77 Edmonton, for instance) and not the suites
+inside (614-77 Edmonton St. (great view and condo owner didn't raise the rent on me in  four years, thanks)).
+
+Now, I took a look at the five-number summary and boxplots, as well as Total Living Area Distribution to see if the values in the dataset had
+any weird outliers, but they didn't. The distribution is right-skewed, which makes sense since there is a smaller number of folks who can build
+their 10000 sqft. castle compared to those living at 77 Edmonton St. and the rest of the Broadway-Assiniboine neighbourhood.
+
+count      219717.0
+mean      1304.9081
+std      520.123153
+min           260.0
+25%           960.0
+50%          1170.0
+75%          1556.0
+max         11197.0
+Name: Total Living Area, dtype: Float64
+
+The column 'Multiple Residences' has Yes, No, or NaN. All 'Yes' values have 'RESMA - MULTIPLE ATTACHED UNITS' as the 'Property Use Code'. This is
+important because if I distribute by Total Living Area, the value for these instances has to be subdivided by the number of 'Dwelling Units'. If a
+duplex is 2500 sqft., a single living unit is 1250 sqft., for example. Then, whatever the neighbourhood distribution of population for a 1250 sqft.
+will be calculated, then doubled when determining the population at that particular parcel.
+
+Now, I don't want to keep getting bogged down by methodology. It took me a long time to reason out which type of grocer's to include. I thought about
+demographic, price, variety, and finally ethnicity concerns around invalidating for instance, an Indian grocer, while validating a Caribbean grocer.
+As a quick recap for that, there is bias in how I chose stores, but in the end it needed to be large, and carry a lot of things. I figured, as a
+resident, you'll just have to try harder to understand and read the labels of your next-door Asian grocer. It's one of the hallmarks of being
+Canadian - exposing yourself to new cultures, and understanding rather than shunning. All that being said, a lot of grocery stores that are of
+different ethnicities were just too small to add to the list.
+
+For the distribution of population methodology, my best first pass is this:
+1) I have 2021 census data for populations in a neighbourhood
+2) I have the polygon of each neighbourhood.
+3) Each valid parcel is contained, based on it's centroid, within a neighbourhood.
+4) Each valid parcel has a size of living area, in this case square footage. The units don't matter.
+5) Each parcel takes up a percentage of the total square footage in a neighbourhood, and therefore takes up a percentage of the available population.
+    - Assumption is that type of residences in a neighbourhood is roughly equal, but that's not really true of course. Henderson Hwy. has large
+    apartments, while just off Henderson Hwy. has large square footage single dwelling homes.
+    - However, each dwelling must contain at least 1 of the population. So, if any dwelling percentage of total neighbourhood sqft is less than 1,
+    it gets rounded up to one, and the rest of the available population is distributed by square footage.
+    - And, no dwelling can have a non-integer value. I guess what will have to happen is a cascarding effect. Continually updating the available
+    amount of population to distribute. It'll happen in stages.
+6) If a parcel is listed as multiple residences, its square footage gets divided by the Dwelling Units, the square footage of each unit determines the
+population distribution, then the population gets summed back to the 1 instance containing multiple dwellings.
+
+Data needed:
+- assessments dataset (Centroid Lat, Centroid Lon or Geometry (multipolygon))
+/food_desert/data/raw/Assessment_Parcels_20251112.csv
+
+- neighbourhoods with populations .csv from my old project (which has a geometry multipolygon column for each neighbourhood)
+/food_desert/data/reference/neighbourhoods.csv
+
+attach_neighbourhoods_to_parcels.py
+
+This script takes in the the full assessments dataset, as well the neighbourhood with attached 2021 census .csv that I created for a school project,
+and attachs those columns to only the Roll Number values that match the 'Total Living Area' conditions. This is the first step in calculate resident
+numbers per parcel (only the correct parcels). The output goes to data/interim and is a much smaller file. It's just a mask that I can use an inner 
+join on in the next file. This is better than writing out an entire 230MB copy of the parcels dataset.
+
+
+
+Computing Paths: Straight-line vs. Following Network Paths
+
+Paths can be computed as a straight line between points, the effective Euclidean distance, or paths can be calcuated by using a road network
+of the city to find the shortest path to a grocery store. The Euclidean distance is easy and is done in compute_nearest_grocer.py. A mask is
+outputted in interim for analysis or visualizations. I tried to do the same using the city's road network, but I found that the ratio
+between straight line and shortest network paths was up to 15x, meaning that it's not reliable. I also found ratios <1, which doesn't 
+make sense, since the straight line path between two points has to be the shortest path. Therefore, I can't really defend the results
+from compute_nearest_grocer_path.py, and won't use it for analysis. Suffice to say, if my results were to say '20% of people live further
+than 500m from a major grocer', then the reality is that even more people living greater than a 500m path to the grocer. This means that
+analysis gives the low end value for those affected by food deserts.
+
+Visualization Ideas
+
+Right now I can bin parcels into neighbourhoods. Geographically, these are mostly small areas, getting larger as you get out of the city.
+
+1) In each neighbourhood, the amount of people affected by being >500m away from a qualifying grocer, where a simple number gives an
+absolute 'these are how many people are affected' metric. The map gives a heated colour to each neighbourhood, based on absolute number.
+
+2) I think another heat map could be the average distance per resident away from the nearest grocer. This could represent car dependence.
