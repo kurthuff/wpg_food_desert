@@ -86,7 +86,7 @@ def make_folium_map(gdf: gpd.GeoDataFrame, html_path: Path) -> None:
 
 
 def main() -> None:
-    geocode_src = project_root / "data" / "reference" / "grocer_geocode.csv"
+    geocode_src = project_root / "data" / "reference" / "qgis_grocer_geocode.csv"
 
     audit_dir = project_root / "data" / "interim" / "geocode_audit"
     audit_dir.mkdir(parents=True, exist_ok=True)

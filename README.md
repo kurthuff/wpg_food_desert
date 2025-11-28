@@ -98,8 +98,16 @@ of interest, and the final, audited grocers.geojson grocer locations, this calcu
 Output is a mask that can be joined with assessment parcel data for more information. This is an 'as the crow flies'
 distance, effectively Euclidian (technically geodesic since it's on the Earth sphere).
 
-6) __compute_nearest_grocer>path.py__<br>
+6) __compute_nearest_grocer_path.py__<br>
 This script using the road network data to snap parcels and grocers to the nearest line geometry, and then finds the
 nearest parcel to grocer path. The result is mixed; some paths end up being unreasonably long, while others, due
-to the snapping to lines, are shorter than the Euclidean path (can't happen). So, while I leave this scrript and it's
+to the snapping to lines, are shorter than the Euclidean path (can't happen). So, while I leave this script and it's
 mask in the repo, I won't be using it for analysis.
+
+7) __add_poverty_to_neighbourhoods.py__<br>
+_Used conditionally to gather census data_<br>
+This script builds off of my original neighbourhood aggregation process from an old project. It takes in all of the
+.xlsx census files from 2021 census that the City of Winnipeg bought from Stats Canada, and extracts poverty data.
+I will probably have more scripts like this as I dig deeper. Keep in mind that my repo ignores those .xlsx files,
+and this script won't work without them.
+
