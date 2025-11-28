@@ -1,18 +1,28 @@
 ## Project Structure and Usage
 
 ```text
-data/
-├── raw/
-├── interim/
-├── processed/
-├── reference/
-outputs/
-├── rasters/
-├── mapping/
-└── reports/
-scripts/
-src/ag_res/
-logs/
+food_desert/              # project root
+├── data/
+│   ├── cache/
+│   ├── raw/
+│   ├── interim/
+│   │   ├── geocode_audit/
+│   ├── processed/
+│   └── reference/
+│       ├── qgis/
+├── literature/
+├── logs/
+├── notebooks/
+├── outputs/
+│   ├── mapping/
+│   ├── rasters/
+│   └── reports/
+├── scripts/
+├── src/
+│   └── food_desert/
+├── README.md
+└── requirements.txt
+
 ```
 
 ## Running Scripts
