@@ -5,3 +5,4 @@ osmnx-2.0.6
 folium-0.20.0
 geopy-2.4.1
 mapclassify-2.10.0
+rpy2-3.6.4 # for better graphing
