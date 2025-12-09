@@ -77,13 +77,12 @@ def load_grocers(path: Path) -> gpd.GeoDataFrame:
         gdf = gdf.rename(columns={"store_name": "grocer_store"})
 
     keep_cols = ["geometry"]
-    for c in ["grocer_chain", "grocer_store"]:
+    for c in ["grocer_id", "grocer_chain", "grocer_store"]:
         if c in gdf.columns:
             keep_cols.append(c)
 
     gdf = gdf[keep_cols].copy()
     return gdf
-
 
 def compute_nearest(
     parcels_gdf: gpd.GeoDataFrame, grocers_gdf: gpd.GeoDataFrame
@@ -137,6 +136,7 @@ def main() -> None:
         "dist_to_grocer_m",
         "grocer_chain",
         "grocer_store",
+        "grocer_id"
     ]
     cols = [c for c in cols if c in joined.columns]
 
