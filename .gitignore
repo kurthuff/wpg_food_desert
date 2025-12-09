@@ -23,6 +23,7 @@ __pycache__/
 data/raw/
 data/reference/project.writeup.txt
 data/reference/neighbourhoodpop_excel/
+reference_backup/
 
 # Environment and build
 .env
