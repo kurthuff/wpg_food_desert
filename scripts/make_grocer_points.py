@@ -48,8 +48,10 @@ def build_working_csv(df: pd.DataFrame) -> pd.DataFrame:
 def csv_to_geodataframe(csv_path: Path) -> gpd.GeoDataFrame:
     df = pd.read_csv(csv_path)
 
-    if not {"lon", "lat"}.issubset(df.columns):
-        raise ValueError("grocers.csv must have lon and lat columns")
+    # Add a simple surrogate key if one doesn't already exist
+    if "grocer_id" not in df.columns:
+        df = df.reset_index(drop=True)
+        df.insert(0, "grocer_id", df.index + 1)  # 1,2,3,...
 
     df["lon"] = pd.to_numeric(df["lon"], errors="coerce")
     df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
