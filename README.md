@@ -73,11 +73,12 @@ file /data/reference/neighbourhoods.csv folder. This original file was a pain to
 https://legacy.winnipeg.ca/census/2021/Alpha/default.asp
 
 6) __2021 Winnipeg Household Data__<br>
-The page linked is used in Winnipeg's own 2025 Housing Needs Assessment report. It provides a way to create an algorithm
-to map residential parcel units which takes into account the different distributions of 1-to-5 resident households
-dependent on the type of property. This helps create a more defensible resident allotment within neighbourhoods.
-I'll probably reiterate on this synthetic resident distribution technique as I do more analysis. See 'Intelligent
-Dasymetric Mapping and Its Application to Areal Interpolation' (Mennis and Hultgren, 2006) for more information.
+The page linked is used in Winnipeg's own 2025 Housing Needs Assessment report. The data source is through the Canada
+Mortgage and Housing Corporation, and it's source is 'CMHC, adapted from Statistics Canada (National Household Survey)'
+It provides a way to create an algorithm to map residential parcel units which takes into account the different distributions
+of 1-to-5 resident households dependent on the type of property. This helps create a more defensible resident allotment
+within neighbourhoods. I'll probably reiterate on this synthetic resident distribution technique as I do more analysis.
+See 'Intelligent Dasymetric Mapping and Its Application to Areal Interpolation' (Mennis and Hultgren, 2006) for more information.
 https://www03.cmhc-schl.gc.ca/hmip-pimh/en#Profile/4611040/4/Winnipeg%20(CY)
 
 ## Scripts
@@ -100,10 +101,14 @@ a mask is written to data/interim/. This mask is much smaller than the full parc
 by subsequent scripts.
 
 3) __compute_residents.py__<br>
-Each neighbourhood has its Total Living Area calculated, and each parcel gets a sqft weight of the total sqft neighbourhood
-sum. The weight calculated against the population of the neighbourhood to calculate residents in the parcel. Those with <1
-get 1. Then the remaining pop gets recalculated. This is iterative and is a bottom-up approach. It's more realistic to have
-the residents per parcel level off as parcel sqft grows. Also outputs a mask, not the entire dataset.
+This script allocates neighbourhood census population to individual parcels using empirically-derived household size
+distributions. Parcels are first classified as owner-occupied or renter-occupied based on Property Use Code (e.g.,
+single-family homes vs. apartments). The CMHC 2021 household size distribution percentages are then applied to calculate
+expected population by household type (1-person, 2-person, etc.) for each tenure category. These raw population values
+are scaled proportionally to match the neighbourhood's actual census population. Finally, household sizes are
+probabilistically assigned to parcels proportional to their Dwelling Units, ensuring every parcel receives at least 1
+resident. This approach reflects real-world variation in household composition (1-5+ persons) while preserving exact 
+neighbourhood population totals. Outputs a mask file.
 
 4) __make_grocer_points.py__<br>
 Using the output from QGIS and the plugin MMQGIS to add geocode to raw_grocer_addresses.csv, this script creates a .csv,
