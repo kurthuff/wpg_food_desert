@@ -83,12 +83,13 @@ This queries the Overpass API, saving data/reference/winnipeg_supermarkets.geojs
 before being used for the project.
 
 2) __attach_neighbourhoods_to_parcels.py__<br>
-This file takes in /data/raw/Assessment_Parcels_20251112.csv or whichever dated file you grab from the Open Data portal,
-and as well takes in /data/reference/neighbourhoods.csv. First, valid residential parcels are filtered from the
-aggregate of all parcels, then the centroid lat and lon of each is computed to be inside one of the neighbourhoods
-in the neighbourhoods.csv using its geometry column, being a multipolygon. population_id, geometry, name and population
-fields are joined to the parcels dataframe, and then a mask is written out to data/interim/. The mask is a much smaller
-file that can be re-read to the next script, instead of writing out another huge parcels dataset.
+This file takes in /data/raw/Assessment_Parcels_20251112.csv (or whichever dated file you grab from the Open
+Data portal) and /data/reference/neighbourhoods.csv. Valid residential parcels are filtered based on Dwelling Units > 0,
+which ensures apartment buildings are included (unlike the previous Total Living Area filter that excluded buildings
+without square footage data). The centroid lat/lon of each parcel is spatially joined to determine which neighbourhood
+polygon it falls within. The neighbourhood_id, name, and population fields are appended to the parcels dataframe, and
+a mask is written to data/interim/. This mask is much smaller than the full parcels dataset and can be efficiently read
+by subsequent scripts.
 
 3) __compute_residents.py__<br>
 Each neighbourhood has its Total Living Area calculated, and each parcel gets a sqft weight of the total sqft neighbourhood
