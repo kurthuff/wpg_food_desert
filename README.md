@@ -72,6 +72,14 @@ data was appended with the neighbourhood geometry multipolygon from City of Winn
 file /data/reference/neighbourhoods.csv folder. This original file was a pain to create.<br>
 https://legacy.winnipeg.ca/census/2021/Alpha/default.asp
 
+6) __2021 Winnipeg Household Data__<br>
+The page linked is used in Winnipeg's own 2025 Housing Needs Assessment report. It provides a way to create an algorithm
+to map residential parcel units which takes into account the different distributions of 1-to-5 resident households
+dependent on the type of property. This helps create a more defensible resident allotment within neighbourhoods.
+I'll probably reiterate on this synthetic resident distribution technique as I do more analysis. See 'Intelligent
+Dasymetric Mapping and Its Application to Areal Interpolation' (Mennis and Hultgren, 2006) for more information.
+https://www03.cmhc-schl.gc.ca/hmip-pimh/en#Profile/4611040/4/Winnipeg%20(CY)
+
 ## Scripts
 
 In run order:
