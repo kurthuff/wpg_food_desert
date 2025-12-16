@@ -16,17 +16,26 @@ if str(src_path) not in sys.path:
 from food_desert import paths  # noqa: F401
 
 
-def clean_total_living_area(df: pd.DataFrame) -> pd.DataFrame:
+def clean_dwelling_units(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Filter parcels to only those with valid Dwelling Units.
+    
+    Dwelling Units represent the number of residential units in a parcel.
+    This replaces the previous Total Living Area filter to ensure apartment
+    buildings (which often lack living area data) are included.
+    """
     col = (
-        df["Total Living Area"]
+        df["Dwelling Units"]
         .astype(str)
         .str.replace(",", "", regex=False)
         .str.strip()
         .replace(["", "nan", "NaN", "None", "."], pd.NA)
     )
     df = df.copy()
-    df["Total Living Area"] = pd.to_numeric(col, errors="coerce").astype("Int64")
-    df = df[df["Total Living Area"] > 0].copy()
+    df["Dwelling Units"] = pd.to_numeric(col, errors="coerce").astype("Float64")
+    
+    # Filter for dwelling units > 0 (excludes NaN, 0, and negative values)
+    df = df[df["Dwelling Units"] > 0].copy()
     return df
 
 
@@ -88,7 +97,7 @@ def main() -> None:
     out_path = project_root / "data" / "interim" / "parcel_neighbourhood_mask.csv"
 
     parcels_df = pd.read_csv(parcels_path, low_memory=False)
-    parcels_df = clean_total_living_area(parcels_df)
+    parcels_df = clean_dwelling_units(parcels_df)
     parcels_gdf = make_parcels_gdf(parcels_df)
 
     neigh_gdf = load_neighbourhoods(neigh_path)
