@@ -110,6 +110,11 @@ def allocate_residents_to_neighbourhood(
         return neigh_parcels
     
     census_pop = neigh_parcels['population'].iloc[0]
+
+    # If population is 0 or less, set all residents to 0 and return
+    if census_pop <= 0:
+        neigh_parcels['residents'] = 0
+        return neigh_parcels
     
     # Count owned and rented dwelling units
     owned = neigh_parcels[neigh_parcels['tenure'] == 'owned']
@@ -248,14 +253,15 @@ def allocate_residents_to_neighbourhood(
             rented_idx = end_idx
         else:
             # Shouldn't happen if pools sized correctly, but fallback
-            residents = du  # 1 person per unit as fallback
+            residents = 0  # No residents if pools exhausted
         
         residents_list.append(residents)
     
     neigh_parcels['residents'] = residents_list
     
-    # Ensure minimum 1 resident per parcel
-    neigh_parcels.loc[neigh_parcels['residents'] == 0, 'residents'] = 1
+    # Ensure minimum 1 resident per parcel (only if neighbourhood has population)
+    if census_pop > 0:
+        neigh_parcels.loc[neigh_parcels['residents'] == 0, 'residents'] = 1
     
     # Adjust if total doesn't match census (due to rounding or minimum enforcement)
     total_assigned = neigh_parcels['residents'].sum()
