@@ -136,3 +136,29 @@ This script builds off of my original neighbourhood aggregation process from an 
 I will probably have more scripts like this as I dig deeper. Keep in mind that my repo ignores those .xlsx files,
 and this script won't work without them.
 
+8) __aggregate_parcels_by_geometry.py__<br>
+This script aggregates parcels with identical geographic locations (same Geometry field) into single records. Multiple 
+parcels at the same location, such as individual condo units within a building, are combined by summing numeric fields 
+(residents, Dwelling Units, Total Living Area) and concatenating text fields where appropriate (Unit Numbers, Property 
+Use Codes, Zoning). Categorical attributes (Building Type, Air Conditioning, etc.) are retained only if identical across 
+all parcels at that location; conflicts are dropped. The script creates aggregated_roll_numbers as a CSV list of all 
+Roll Numbers combined at each location and adds parcel_count to track how many parcels were merged. Output is 
+data/processed/aggregated_parcels_by_geometry.csv, ready for 3D visualization without spatial overlap issues.
+
+9) __report_geometry_aggregation.py__<br>
+_Used after aggregate_parcels_by_geometry.py_<br>
+Generates a formatted text report analyzing the geometry aggregation results. Shows the reduction from original parcels 
+to unique geographic locations, distribution of parcel counts per location (e.g., single-family homes vs. 200-unit 
+buildings), resident and dwelling unit statistics before/after aggregation, and column retention analysis (which fields 
+had conflicts and were dropped). Identifies the top 10 highest resident counts and validates that total residents and 
+dwelling units match between original and aggregated datasets. Outputs to outputs/reports/geometry_aggregation_report.txt.
+
+10) __create_3d_height_metric.py__<br>
+_Used after aggregate_parcels_by_geometry.py_<br>
+Calculates parcel area in square meters (using UTM Zone 14N projection for Winnipeg) and engineers multiple height 
+metrics for 3D visualization. The core metric is resident_density (residents per m²), which normalizes for parcel 
+footprint size—more residents in smaller areas produce taller extrusions. Creates scaled versions including per-100m², 
+per-1000m², square root transformation (compresses extremes), and log transformation (maximum compression). Outputs CSV, 
+GeoJSON, and Shapefile formats to data/processed/aggregated_parcels_3d_ready.* with column names truncated for Shapefile 
+compatibility (ht_100m2, ht_sqrt, ht_log). Recommended for ArcGIS Pro 3D scene extrusion using height_metric_sqrt or 
+height_metric_log for balanced visual representation.
