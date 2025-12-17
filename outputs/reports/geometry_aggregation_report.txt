@@ -1,0 +1,151 @@
+====================================================================================================
+WINNIPEG PARCEL GEOMETRY AGGREGATION REPORT
+Residential Parcels Grouped by Identical Geographic Location
+====================================================================================================
+Generated: 2025-12-17 10:27:08
+Data Sources: parcel_residents_mask.csv, Assessment_Parcels_20251112.csv
+
+EXECUTIVE SUMMARY
+----------------------------------------------------------------------------------------------------
+Original residential parcels:        224,517
+Unique geographic locations:         198,679
+Parcels aggregated:                   25,838 ( 11.5%)
+
+Note: Multiple parcels at the same geographic location (e.g., individual condo units
+      within a building) have been aggregated into single records. Resident totals and
+      dwelling unit counts are summed; other attributes retain values only if identical
+      across all parcels at that location.
+
+
+====================================================================================================
+PARCEL COUNT DISTRIBUTION
+====================================================================================================
+
+Parcels per Geographic Location:
+----------------------------------------------------------------------------------------------------
+    1 parcel(s):   197,996 locations  ( 99.7%)
+    2 parcel(s):        40 locations  (  0.0%)
+    3 parcel(s):        21 locations  (  0.0%)
+    4 parcel(s):        31 locations  (  0.0%)
+    5 parcel(s):        11 locations  (  0.0%)
+    6 parcel(s):        27 locations  (  0.0%)
+    7 parcel(s):         8 locations  (  0.0%)
+    8 parcel(s):        24 locations  (  0.0%)
+    9 parcel(s):         8 locations  (  0.0%)
+   10 parcel(s):        15 locations  (  0.0%)
+   11 parcel(s):        12 locations  (  0.0%)
+   12 parcel(s):        17 locations  (  0.0%)
+   13 parcel(s):         9 locations  (  0.0%)
+   14 parcel(s):        23 locations  (  0.0%)
+   15 parcel(s):        18 locations  (  0.0%)
+   16 parcel(s):        18 locations  (  0.0%)
+   17 parcel(s):        13 locations  (  0.0%)
+   18 parcel(s):         6 locations  (  0.0%)
+   19 parcel(s):         7 locations  (  0.0%)
+   20 parcel(s):        16 locations  (  0.0%)
+  ... (116 more categories covering 359 locations)
+
+Maximum parcels in single location: 405
+Locations with multiple parcels:          683 (  0.3%)
+Locations with single parcel:         197,996 ( 99.7%)
+
+====================================================================================================
+RESIDENT STATISTICS
+====================================================================================================
+
+Total residents (original):          736,541
+Total residents (aggregated):        736,541
+Difference:                                0
+
+Resident Distribution (Aggregated):
+----------------------------------------------------------------------------------------------------
+  Minimum:             0
+  25th %ile:           2
+  Median:              2
+  75th %ile:           4
+  Maximum:          1129
+  Mean:              3.7
+
+====================================================================================================
+DWELLING UNITS STATISTICS
+====================================================================================================
+
+Total dwelling units (original):     330,658
+Total dwelling units (aggregated):   330,658
+
+Dwelling Units Distribution (Aggregated):
+----------------------------------------------------------------------------------------------------
+  Minimum:             1
+  25th %ile:           1
+  Median:              1
+  75th %ile:           1
+  Maximum:           925
+  Mean:              1.7
+
+====================================================================================================
+COLUMN RETENTION ANALYSIS
+====================================================================================================
+
+Total columns in aggregated dataset: 37
+
+Columns with Missing Values (Conflicting Data Dropped):
+----------------------------------------------------------------------------------------------------
+  Street Suffix                                       198,249 missing  ( 99.8%)
+  Number Floors (Condo)                               198,133 missing  ( 99.7%)
+  Unit Number                                         197,808 missing  ( 99.6%)
+  Street Direction                                    188,733 missing  ( 95.0%)
+  Property Influences                                  96,574 missing  ( 48.6%)
+  Building Type                                         5,369 missing  (  2.7%)
+  Air Conditioning                                      5,368 missing  (  2.7%)
+  Year Built                                            4,776 missing  (  2.4%)
+  Basement                                              4,774 missing  (  2.4%)
+  Detached Garage                                       4,021 missing  (  2.0%)
+  Pool                                                  4,021 missing  (  2.0%)
+  Attached Garage                                       4,021 missing  (  2.0%)
+  Basement Finish                                       3,534 missing  (  1.8%)
+  Fire Place                                            3,474 missing  (  1.7%)
+  Sewer Frontage Measurement                            2,277 missing  (  1.1%)
+  Water Frontage Measurement                            2,063 missing  (  1.0%)
+  Zoning                                                  687 missing  (  0.3%)
+  Assessed Land Area                                      684 missing  (  0.3%)
+  Street Type                                             548 missing  (  0.3%)
+  Street Number                                           196 missing  (  0.1%)
+  Street Name                                              27 missing  (  0.0%)
+
+====================================================================================================
+TOP 10 HIGHEST RESIDENT COUNTS
+====================================================================================================
+
+ Roll Number residents Dwelling Units  parcel_count Street Number Street Name Street Type
+  4007256980     1,129            696             1            60    WHELLAMS        LANE
+  3080018100       930            449             1           100      ADAMAR        ROAD
+ 12092768000       916            925             1            55       GARRY      STREET
+  8002155500       914            454             1           133      NIAKWA        ROAD
+ 12091132000       873            428             1           500     PORTAGE      AVENUE
+  8021133300       863            425             1         2,000   ST MARY'S        ROAD
+ 13053200100       814            405           405           411  CUMBERLAND      AVENUE
+  3053858600       810            394             1            77  UNIVERSITY    CRESCENT
+ 13096033000       781            375             1           400        WEBB       PLACE
+  7550045500       752            368             1           429    WESTWOOD       DRIVE
+
+====================================================================================================
+METHODOLOGY
+====================================================================================================
+
+Aggregation Rules:
+
+1. SUMMED: residents, Dwelling Units, Total Living Area, Rooms, Total Assessed Value
+
+2. RETAINED IF IDENTICAL (dropped if conflicting): Property Use Code, Year Built,
+   Street Number, Street Name, Air Conditioning, Fire Place, Building Type, and all
+   other descriptive attributes
+
+3. CONCATENATED: Unit Number, Property Influences (comma-separated lists)
+
+4. NEW COLUMNS: parcel_count (number of parcels aggregated), aggregated_roll_numbers
+   (comma-separated list of all Roll Numbers at this location)
+
+Purpose: Enables accurate 3D visualization by preventing visual overlap of co-located
+         parcels (e.g., individual condo units) while preserving total population counts.
+
+====================================================================================================

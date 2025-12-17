@@ -21,7 +21,7 @@ __pycache__/
 # Data and outputs
 *.log
 data/raw/
-data/reference/project.writeup.txt
+data/reference/project_writeup.txt
 data/reference/neighbourhoodpop_excel/
 reference_backup/
 
@@ -36,3 +36,4 @@ cache/
 
 # Big Files
 data/interim/parcel_nearest_grocer.geojson
+data/processed/aggregated_parcels_by_geometry.csv
