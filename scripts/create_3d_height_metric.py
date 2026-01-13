@@ -16,9 +16,16 @@ if str(src_path) not in sys.path:
 from food_desert import paths  # noqa: F401
 
 
-def load_aggregated_parcels(csv_path: Path) -> gpd.GeoDataFrame:
+def load_aggregated_parcels(csv_path: Path, grocer_dist_path: Path = None) -> gpd.GeoDataFrame:
     """Load aggregated parcels and convert to GeoDataFrame."""
     df = pd.read_csv(csv_path)
+    
+    # Merge with grocer distance data if provided
+    if grocer_dist_path is not None and grocer_dist_path.exists():
+        print("  Merging grocer distance data...")
+        dist_df = pd.read_csv(grocer_dist_path)
+        df = df.merge(dist_df, on='Roll Number', how='left')
+        print(f"  Added distance data for {df['dist_to_grocer_m'].notna().sum():,} parcels")
     
     # Parse WKT geometry
     df['geometry'] = df['Geometry'].apply(
@@ -73,6 +80,7 @@ def calculate_area_and_height_metric(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
 def main() -> None:
     agg_path = project_root / "data" / "processed" / "aggregated_parcels_by_geometry.csv"
+    grocer_dist_path = project_root / "data" / "interim" / "aggregated_grocer_distance_mask.csv"
     
     # Output paths
     out_csv = project_root / "data" / "processed" / "aggregated_parcels_3d_ready.csv"
@@ -80,7 +88,7 @@ def main() -> None:
     out_shp = project_root / "data" / "processed" / "aggregated_parcels_3d_ready.shp"
     
     print("Loading aggregated parcels...")
-    gdf = load_aggregated_parcels(agg_path)
+    gdf = load_aggregated_parcels(agg_path, grocer_dist_path)
     print(f"Loaded {len(gdf):,} parcels")
     
     print("\nCalculating area and height metrics...")
@@ -112,6 +120,12 @@ def main() -> None:
     print(f"    Median: {gdf['height_metric_log'].median():.3f}")
     print(f"    Max:    {gdf['height_metric_log'].max():.3f}")
     
+    if 'dist_to_grocer_m' in gdf.columns:
+        print(f"\n  Distance to grocer (meters):")
+        print(f"    Min:    {gdf['dist_to_grocer_m'].min():.1f}")
+        print(f"    Median: {gdf['dist_to_grocer_m'].median():.1f}")
+        print(f"    Max:    {gdf['dist_to_grocer_m'].max():.1f}")
+    
     print("\nSaving outputs...")
     
     # CSV (drop geometry for cleaner CSV)
@@ -126,15 +140,21 @@ def main() -> None:
     # Shapefile (for ArcGIS Pro)
     # Note: Shapefile has column name length limits (10 chars)
     gdf_shp = gdf.copy()
-    gdf_shp = gdf_shp.rename(columns={
+    rename_dict = {
         'height_metric_100m2': 'ht_100m2',
         'height_metric_1000m2': 'ht_1000m2',
         'height_metric_sqrt': 'ht_sqrt',
         'height_metric_log': 'ht_log',
         'resident_density': 'res_dens',
         'aggregated_roll_numbers': 'agg_rolls',
-        'neighbourhood_id': 'neigh_id'
-    })
+        'neighbourhood_id': 'neigh_id',
+        'Roll Number': 'Roll_Numbe',
+        'dist_to_grocer_m': 'dist_m',
+        'grocer_chain': 'groc_chain',
+        'grocer_store': 'groc_store',
+        'grocer_id': 'groc_id'
+    }
+    gdf_shp = gdf_shp.rename(columns=rename_dict)
     gdf_shp.to_file(out_shp, driver='ESRI Shapefile')
     print(f"  Shapefile: {out_shp}")
     
@@ -159,6 +179,14 @@ def main() -> None:
     
     print("\nRecommendation: Start with height_metric_sqrt or height_metric_log")
     print("for best visual balance in 3D scenes.")
+    
+    if 'dist_to_grocer_m' in gdf.columns:
+        print("\nGROCER DISTANCE DATA INCLUDED:")
+        print("  - dist_m: Distance to nearest grocer in meters")
+        print("  - groc_chain: Name of nearest grocer chain")
+        print("  - groc_store: Store name of nearest grocer")
+        print("  Use for color symbology to show food desert areas")
+    
     print("=" * 70)
 
 
